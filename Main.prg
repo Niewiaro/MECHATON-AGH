@@ -4,7 +4,8 @@
 ' Pick and Place by juggling on Pallet
 '
 ' This program picks parts from storage box, 
-` place them randomly on pallet and then juggles them between pallet positions
+' place them randomly on pallet and then juggles 
+' them between pallet positions
 '
 ' Debug
 #define DEBUG True
