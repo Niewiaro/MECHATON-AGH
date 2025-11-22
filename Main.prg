@@ -30,6 +30,10 @@
 ' Detail parameters
 #define DETAIL_HEIGHT 10
 #define DETAIL_EDGE 40
+#define DETAIL_AMOUNT 4
+#define DETAIL_BOX_OFFSET_X 5
+#define DETAIL_BOX_OFFSET_Y 5
+#define DETAIL_BOX_OFFSET_Z 5
 
 Global Preserve Boolean boolDetails(9)
 Global Preserve Integer intPrevious
@@ -107,7 +111,12 @@ Fend
 
 Function InitRobot
     Print "Start InitRobot"
-    
+
+    If DETAIL_AMOUNT * DETAIL_HEIGHT > -ROBOT_RANGE_Z Then
+        Print "Error: Too many details or too high details!"
+        Quit All
+    EndIf
+
 	Reset
 	If Motor = Off Then
 		Motor On
@@ -117,12 +126,15 @@ Function InitRobot
 	Accel ROBOT_ACCEL_X, ROBOT_ACCEL_Y
     Arch ROBOT_ARCH_ARCH_NUMBER, ROBOT_ARCH_DEPART_DIST, ROBOT_ARCH_APPRO_DIST
 
-    boolDetails(0) = True
-    boolDetails(1) = True
-    boolDetails(2) = True
-    boolDetails(3) = True
-
     intPrevious = -1
+    Integer i
+    i = 0
+
+    For i = 0 To DETAIL_AMOUNT - 1
+        Jump box_0_0 +X(DETAIL_BOX_OFFSET_X + (DETAIL_EDGE * 0.5) - ROBOT_GRIPPER_OFFSET_X) -Y(DETAIL_BOX_OFFSET_Y + (DETAIL_EDGE * 0.5) - ROBOT_GRIPPER_OFFSET_Y) :Z(ROBOT_RANGE_Z + DETAIL_BOX_OFFSET_Z + (DETAIL_HEIGHT * (DETAIL_AMOUNT - i)) + ROBOT_GRIPPER_OFFSET_Z) C0
+        
+        PlaceRandom
+    Next i
 
     Print "End InitRobot"
 Fend
