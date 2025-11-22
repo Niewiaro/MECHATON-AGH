@@ -10,6 +10,9 @@
 #define ROBOT_ACCEL_X 50
 #define ROBOT_ACCEL_Y 50
 #define ROBOT_RANGE_Z -150
+#define ROBOT_ARCH_ARCH_NUMBER 0
+#define ROBOT_ARCH_DEPART_DIST 12
+#define ROBOT_ARCH_APPRO_DIST 12
 '
 ' Pallet parameters
 #define PALLET_ROWS 3
@@ -61,5 +64,5 @@ Function InitRobot
 	Power High
 	Speed ROBOT_SPEED
 	Accel ROBOT_ACCEL_X, ROBOT_ACCEL_Y
-    Arch 0, 12, 12
+    Arch ROBOT_ARCH_ARCH_NUMBER, ROBOT_ARCH_DEPART_DIST, ROBOT_ARCH_APPRO_DIST
 Fend
