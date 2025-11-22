@@ -96,6 +96,9 @@ Function PlaceRandom
 
     Do
 		intRandom = Int(Rnd(9))
+        Print "intRandom", intRandom
+        Print "intPrevious", intPrevious
+        Print "boolDetails(intRandom)", boolDetails(intRandom)
 	Loop Until intRandom <> intPrevious And boolDetails(intRandom) = False
 
     intPrevious = intRandom
@@ -125,6 +128,8 @@ Function InitRobot
 	Speed ROBOT_SPEED
 	Accel ROBOT_ACCEL_X, ROBOT_ACCEL_Y
     Arch ROBOT_ARCH_ARCH_NUMBER, ROBOT_ARCH_DEPART_DIST, ROBOT_ARCH_APPRO_DIST
+
+    Jump home
 
     intPrevious = -1
     Integer i
