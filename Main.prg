@@ -31,6 +31,8 @@ Global Preserve Boolean boolDetails(9)
 Global Preserve Integer intPrevious
 
 Function main
+    Print "Start Main"
+
     ' --- Define variables ---
     ' cycle counter
 	Long cycleCount
@@ -47,6 +49,8 @@ Function main
         cycleCount = cycleCount + 1
         Print "Cycle count: ", cycleCount
 	Loop
+    
+    Print "End Main"
 Fend
 
 Function JumpWithDetails
@@ -58,6 +62,8 @@ Function JumpWithDetails
 Fend
 
 Function PickRandom
+    Print "Start PickRandom"
+
     Integer intRandom
 
     Do
@@ -68,9 +74,13 @@ Function PickRandom
     boolDetails(intRandom) = False
 
     JumpWithDetails
+
+    Print "End PickRandom"
 Fend
 
 Function PlaceRandom
+    Print "Start PlaceRandom"
+
     Integer intRandom
 
     Do
@@ -81,9 +91,13 @@ Function PlaceRandom
     boolDetails(intRandom) = True
 
     JumpWithDetails
+
+    Print "End PlaceRandom"
 Fend
 
 Function InitRobot
+    Print "Start InitRobot"
+    
 	Reset
 	If Motor = Off Then
 		Motor On
@@ -99,4 +113,6 @@ Function InitRobot
     boolDetails(3) = True
 
     intPrevious = -1
+
+    Print "End InitRobot"
 Fend
