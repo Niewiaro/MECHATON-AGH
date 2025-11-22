@@ -95,4 +95,11 @@ Function InitRobot
 	Speed ROBOT_SPEED
 	Accel ROBOT_ACCEL_X, ROBOT_ACCEL_Y
     Arch ROBOT_ARCH_ARCH_NUMBER, ROBOT_ARCH_DEPART_DIST, ROBOT_ARCH_APPRO_DIST
+
+    boolDetails(0) = True
+    boolDetails(1) = True
+    boolDetails(2) = True
+    boolDetails(3) = True
+
+    intPrevious = -1
 Fend
