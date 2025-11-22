@@ -37,7 +37,7 @@
 #define DETAIL_BOX_OFFSET_Y 5
 #define DETAIL_BOX_OFFSET_Z 5
 
-Global Preserve Boolean boolDetails(PALLET_ROWS * PALLET_COLS)
+Global Preserve Boolean boolDetails(9) ' PALLET_ROWS * PALLET_COLS
 Global Preserve Integer intPrevious
 
 Function main
@@ -148,7 +148,6 @@ Function InitRobot
     intPrevious = -1
 
     For i = 0 To (PALLET_ROWS * PALLET_COLS) - 1
-        Print "boolDetails", i , ": ", boolDetails(i)
         boolDetails(i) = False
     Next i
 
