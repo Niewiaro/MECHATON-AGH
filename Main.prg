@@ -32,9 +32,6 @@ Global Preserve Integer intPrevious
 
 Function main
     ' --- Define variables ---
-    ' counters
-	
-
     ' cycle counter
 	Long cycleCount
     cycleCount = 0
@@ -55,7 +52,7 @@ Fend
 Function JumpWithDetails
     Integer i, j
     i = intPrevious / PALLET_COLS
-    j = intPrevious % PALLET_COLS
+    j = intPrevious Mod PALLET_COLS
 
     Jump pallet_0_0 +X(PALLET_OFFSET_EDGE_X + (PALLET_OFFSET_X * i) + (DETAIL_EDGE * i) + (DETAIL_EDGE * 0.5)) -Y(PALLET_OFFSET_EDGE_Y + (PALLET_OFFSET_Y * j) + (DETAIL_EDGE * j) + (DETAIL_EDGE * 0.5)) :Z(ROBOT_RANGE_Z + PALLET_HEIGHT + DETAIL_HEIGHT) C0
 Fend
@@ -65,7 +62,7 @@ Function PickRandom
 
     Do
 		intRandom = Int(Rnd(9))
-	Loop Until intRandom <> intPrevious && boolDetails(intRandom) = True
+	Loop Until intRandom <> intPrevious And boolDetails(intRandom) = True
 
     intPrevious = intRandom
     boolDetails(intRandom) = False
@@ -78,7 +75,7 @@ Function PlaceRandom
 
     Do
 		intRandom = Int(Rnd(9))
-	Loop Until intRandom <> intPrevious && boolDetails(intRandom) = False
+	Loop Until intRandom <> intPrevious And boolDetails(intRandom) = False
 
     intPrevious = intRandom
     boolDetails(intRandom) = True
