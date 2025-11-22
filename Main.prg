@@ -13,11 +13,11 @@
 #define ROBOT_ARCH_ARCH_NUMBER 0
 #define ROBOT_ARCH_DEPART_DIST 12
 #define ROBOT_ARCH_APPRO_DIST 12
-#define ROBOT_WAIT_TIME 0.5
+#define ROBOT_WAIT_TIME 0.1
 #define ROBOT_GRIPPER_OFFSET_X -50
 #define ROBOT_GRIPPER_OFFSET_Y 0
 #define ROBOT_GRIPPER_OFFSET_Z 85
-'
+
 ' Pallet parameters
 #define PALLET_ROWS 3
 #define PALLET_COLS 3
@@ -78,7 +78,9 @@ Function PickRandom
     boolDetails(intRandom) = False
 
     JumpWithDetails
+    Wait ROBOT_WAIT_TIME
     On Gripper
+    Wait ROBOT_WAIT_TIME
 
     Print "End PickRandom"
 Fend
@@ -96,7 +98,9 @@ Function PlaceRandom
     boolDetails(intRandom) = True
 
     JumpWithDetails
+    Wait ROBOT_WAIT_TIME
     Off Gripper
+    Wait ROBOT_WAIT_TIME
 
     Print "End PlaceRandom"
 Fend
