@@ -9,7 +9,7 @@
 #define ROBOT_SPEED 50
 #define ROBOT_ACCEL_X 50
 #define ROBOT_ACCEL_Y 50
-#define ROBOT_RANGE_Z -150
+#define ROBOT_RANGE_Z -170
 #define ROBOT_ARCH_ARCH_NUMBER 0
 #define ROBOT_ARCH_DEPART_DIST 12
 #define ROBOT_ARCH_APPRO_DIST 12
@@ -21,7 +21,7 @@
 ' Pallet parameters
 #define PALLET_ROWS 3
 #define PALLET_COLS 3
-#define PALLET_HEIGHT 10
+#define PALLET_HEIGHT 5
 #define PALLET_OFFSET_X 10
 #define PALLET_OFFSET_Y 10
 #define PALLET_OFFSET_EDGE_X 5
@@ -78,6 +78,7 @@ Function PickRandom
     boolDetails(intRandom) = False
 
     JumpWithDetails
+    On Gripper
 
     Print "End PickRandom"
 Fend
@@ -95,6 +96,7 @@ Function PlaceRandom
     boolDetails(intRandom) = True
 
     JumpWithDetails
+    Off Gripper
 
     Print "End PlaceRandom"
 Fend
