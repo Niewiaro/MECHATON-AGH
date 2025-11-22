@@ -112,7 +112,7 @@ Fend
 Function InitRobot
     Print "Start InitRobot"
 
-    If DETAIL_AMOUNT * DETAIL_HEIGHT > -ROBOT_RANGE_Z Then
+    If (DETAIL_AMOUNT * DETAIL_HEIGHT) > (-ROBOT_RANGE_Z) Then
         Print "Error: Too many details or too high details!"
         Quit All
     EndIf
