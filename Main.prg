@@ -27,13 +27,13 @@
 #define DETAIL_HEIGHT 10
 #define DETAIL_EDGE 40
 
+Global Preserve Boolean boolDetails(9)
+Global Preserve Integer intPrevious
 
 Function main
     ' --- Define variables ---
     ' counters
-	Integer i, j
-    i = 0
-    j = 0
+	
 
     ' cycle counter
 	Long cycleCount
@@ -44,16 +44,46 @@ Function main
 
     ' --- Main loop ---
 	Do
-		For i = 0 To PALLET_ROWS - 1
-            For j = 0 To PALLET_COLS - 1
-                Jump pallet_0_0 +X(PALLET_OFFSET_EDGE_X + (PALLET_OFFSET_X * i) + (DETAIL_EDGE * i) + (DETAIL_EDGE * 0.5)) -Y(PALLET_OFFSET_EDGE_Y + (PALLET_OFFSET_Y * j) + (DETAIL_EDGE * j) + (DETAIL_EDGE * 0.5)) :Z(ROBOT_RANGE_Z + PALLET_HEIGHT + DETAIL_HEIGHT) C0
-                Wait .1
-                cycleCount = cycleCount + 1
-                Print "Cycle count: ", cycleCount
-            Next j
-		Next i
-	Loop
+		PickRandom
+        PlaceRandom
 
+        cycleCount = cycleCount + 1
+        Print "Cycle count: ", cycleCount
+	Loop
+Fend
+
+Function JumpWithDetails
+    Integer i, j
+    i = intPrevious / PALLET_COLS
+    j = intPrevious % PALLET_COLS
+
+    Jump pallet_0_0 +X(PALLET_OFFSET_EDGE_X + (PALLET_OFFSET_X * i) + (DETAIL_EDGE * i) + (DETAIL_EDGE * 0.5)) -Y(PALLET_OFFSET_EDGE_Y + (PALLET_OFFSET_Y * j) + (DETAIL_EDGE * j) + (DETAIL_EDGE * 0.5)) :Z(ROBOT_RANGE_Z + PALLET_HEIGHT + DETAIL_HEIGHT) C0
+Fend
+
+Function PickRandom
+    Integer intRandom
+
+    Do
+		intRandom = Int(Rnd(9))
+	Loop Until intRandom <> intPrevious && boolDetails(intRandom) = True
+
+    intPrevious = intRandom
+    boolDetails(intRandom) = False
+
+    JumpWithDetails
+Fend
+
+Function PlaceRandom
+    Integer intRandom
+
+    Do
+		intRandom = Int(Rnd(9))
+	Loop Until intRandom <> intPrevious && boolDetails(intRandom) = False
+
+    intPrevious = intRandom
+    boolDetails(intRandom) = True
+
+    JumpWithDetails
 Fend
 
 Function InitRobot
