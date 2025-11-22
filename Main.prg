@@ -13,11 +13,13 @@
 #define ROBOT_ARCH_ARCH_NUMBER 0
 #define ROBOT_ARCH_DEPART_DIST 12
 #define ROBOT_ARCH_APPRO_DIST 12
+#define ROBOT_WAIT_TIME 0.5
+#define ROBOT_GRIPPER_HEIGHT 85
 '
 ' Pallet parameters
 #define PALLET_ROWS 3
 #define PALLET_COLS 3
-#define PALLET_HEIGHT 105
+#define PALLET_HEIGHT 10
 #define PALLET_OFFSET_X 10
 #define PALLET_OFFSET_Y 10
 #define PALLET_OFFSET_EDGE_X 5
@@ -49,7 +51,7 @@ Function main
         cycleCount = cycleCount + 1
         Print "Cycle count: ", cycleCount
 	Loop
-    
+
     Print "End Main"
 Fend
 
@@ -58,7 +60,7 @@ Function JumpWithDetails
     i = intPrevious / PALLET_COLS
     j = intPrevious Mod PALLET_COLS
 
-    Jump pallet_0_0 +X(PALLET_OFFSET_EDGE_X + (PALLET_OFFSET_X * i) + (DETAIL_EDGE * i) + (DETAIL_EDGE * 0.5)) -Y(PALLET_OFFSET_EDGE_Y + (PALLET_OFFSET_Y * j) + (DETAIL_EDGE * j) + (DETAIL_EDGE * 0.5)) :Z(ROBOT_RANGE_Z + PALLET_HEIGHT + DETAIL_HEIGHT) C0
+    Jump pallet_0_0 +X(PALLET_OFFSET_EDGE_X + (PALLET_OFFSET_X * i) + (DETAIL_EDGE * i) + (DETAIL_EDGE * 0.5)) -Y(PALLET_OFFSET_EDGE_Y + (PALLET_OFFSET_Y * j) + (DETAIL_EDGE * j) + (DETAIL_EDGE * 0.5)) :Z(ROBOT_RANGE_Z + PALLET_HEIGHT + DETAIL_HEIGHT + ROBOT_GRIPPER_HEIGHT) C0
 Fend
 
 Function PickRandom
